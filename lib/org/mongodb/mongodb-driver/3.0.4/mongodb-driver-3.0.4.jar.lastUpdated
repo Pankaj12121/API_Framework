@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Wed Feb 14 11:38:11 IST 2018
+@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1518588491915
+https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact org.mongodb\:mongodb-driver\:jar\:3.0.4 from/to central (https\://repo.maven.apache.org/maven2)\: The operation was cancelled.

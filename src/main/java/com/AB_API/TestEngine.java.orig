@@ -1,0 +1,99 @@
+package com.AB_API;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.mail.MessagingException;
+
+import org.testng.IReporter;
+import org.testng.ISuite;
+import org.testng.ITestNGListener;
+import org.testng.TestNG;
+import org.testng.annotations.Test;
+import org.testng.xml.XmlClass;
+import org.testng.xml.XmlSuite;
+import org.testng.xml.XmlTest;
+
+import com.API.Reporter.CustomReporter;
+//import com.API.Reporter.GenerateCustomizationReports;
+import com.API.TestManagementPOJO.MasterScriptPOJO;
+import com.API.TestManagementPOJO.TestScenariosPOJO;
+import com.API.Utils.FrameworkServices;
+import com.API.Utils.ListenerClass;
+
+//-------------------------------------------Heckyl API---------------------------------------------------------------------
+public class TestEngine {
+
+	public static String path;
+	public static String suiteName;
+	public static Date date;
+
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+		try {
+			FrameworkServices frameworkServices=new FrameworkServices();
+			TestNG testNG=new TestNG();
+			CustomReporter frl = new CustomReporter();
+			testNG.addListener(frl);
+			//testNG.addListener(frl);
+			date = new Date();
+			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH.mm.ss");  
+			String strDate= formatter.format(date);  
+			path=frameworkServices.getConfigProperties().getProperty("Execution_Folder")+" "+strDate;
+			testNG.setOutputDirectory(path);
+			XmlSuite suite = new XmlSuite();
+			suiteName="API_EXECUTION_Summary "+strDate;
+			suite.setName(suiteName);
+			suite.setParallel(XmlSuite.ParallelMode.FALSE);
+			List<XmlSuite> xmlSuites = new ArrayList<XmlSuite>();
+			xmlSuites.add(suite);
+			for(TestScenariosPOJO testScenariosPOJO:frameworkServices.getTestToBeExecuted()) {
+				XmlTest test=new XmlTest(suite);
+				test.setName(testScenariosPOJO.getReference());
+				test.setVerbose(3);
+				HashMap<String, String> parameter=new HashMap<String, String>();
+				parameter.put("Description", testScenariosPOJO.getDescription());
+				parameter.put("ScriptReference", testScenariosPOJO.getAutomationScriptReference());
+				parameter.put("ScenarioReference", testScenariosPOJO.getReference());
+				parameter.put("Owner", testScenariosPOJO.getOwner());
+				test.setParameters(parameter);
+				List<XmlClass> classes = new ArrayList<XmlClass>();
+				classes.add(new XmlClass("com.AB_API.TestRunner"));
+				test.setXmlClasses(classes);
+			}
+			//xmlSuites.add(suite);
+			testNG.setXmlSuites(xmlSuites);
+			try {
+				testNG.run();
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			String filePath=TestEngine.path;
+			int failCount=CustomReporter.totFail;
+			if(failCount>0) {
+				if(FrameworkServices.getConfigProperties().getProperty("SendEmailandSMS").equalsIgnoreCase("Yes")) {
+					try {
+<<<<<<< working copy
+						EmailSender.sendEmailWithAttachments("ABMA.API.Automation@angelbroking.com", "angel@123", filePath);
+=======
+						EmailSender.sendEmailWithAttachments("ABMA.API.Automation@angelbroking.com", "angel@123", "rajesh.devakate@aqmtechnologies.com", filePath);
+>>>>>>> merge rev
+						Bitly.bitlyLink();
+						SMSSender.sendSMS();
+					} catch (MessagingException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,28 @@
+package com.API.ServiceEnum;
+
+public enum ServiceEndpoint {
+	
+	
+<<<<<<< working copy
+	HeckylGetData("http://172.31.16.104/api/FNOAPI/GetData");
+=======
+	HeckylGetData("http://172.31.16.104/api/FNOAPI/GetData"),
+	HeckylPCRRatio("http://172.31.16.104/api/FNOAPI/GetMostActivePutCallDetails"),
+	HeckylGetQuote("http://172.31.18.213/api/FNOAPI/GetMostActivePutCallDetails"),
+	HeckylGetGroupData(" http://172.31.16.104/api/FNOAPI/GetGroupData");
+>>>>>>> merge rev
+	
+	private String url;
+	ServiceEndpoint(String url) {
+		this.url = url;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String data) {
+		this.url = data+url;
+	}
+
+}

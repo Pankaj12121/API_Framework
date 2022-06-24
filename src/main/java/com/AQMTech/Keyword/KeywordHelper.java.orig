@@ -1,0 +1,57 @@
+package com.AQMTech.Keyword;
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+import com.API.Utils.ExcelOperation;
+import com.API.requests.HeckylGetFuturesMarketsIndicators;
+import com.API.requests.HeckylGetGroupData;
+import com.API.requests.HeckylGetQuote;
+import com.API.requests.HeckylGetRolloverData;
+import com.API.requests.HeckylGetSectorData;
+import com.API.requests.HeckylGetSectorPerformance;
+import com.API.requests.HeckylHeatMapGetFutureBuiltUp;
+<<<<<<< working copy
+=======
+import com.API.requests.HeckylOIAnalysis;
+import com.API.requests.HeckylPCRRatio;
+>>>>>>> merge rev
+
+public class KeywordHelper {
+	public void HeatMapGetFutureBuiltUp(XSSFWorkbook workbook,String sheetName,String scenarioID, ExcelOperation excelOperation) throws Exception {
+		HeckylHeatMapGetFutureBuiltUp HeatMapGetFutureBuiltUp = new HeckylHeatMapGetFutureBuiltUp();
+		HeatMapGetFutureBuiltUp.HeatMapGetFutureBuiltUp(workbook,sheetName,excelOperation,scenarioID);
+	}
+	public void GetSectorData(XSSFWorkbook workbook,String sheetName,String scenarioID, ExcelOperation excelOperation) throws Exception {
+		HeckylGetSectorData GetSectorData = new HeckylGetSectorData();
+		GetSectorData.GetSectorData(workbook,sheetName,excelOperation,scenarioID);
+	}
+	public void GetSectorPerformance(XSSFWorkbook workbook,String sheetName,String scenarioID, ExcelOperation excelOperation) throws Exception {
+		HeckylGetSectorPerformance GetSectorPerformance = new HeckylGetSectorPerformance();
+		GetSectorPerformance.GetSectorPerformance(workbook,sheetName,excelOperation,scenarioID);
+	}
+	public void GetFuturesMarketsIndicators(XSSFWorkbook workbook,String sheetName,String scenarioID, ExcelOperation excelOperation) throws Exception {
+		HeckylGetFuturesMarketsIndicators GetFuturesMarketsIndicators = new HeckylGetFuturesMarketsIndicators();
+		GetFuturesMarketsIndicators.GetFuturesMarketsIndicators(workbook,sheetName,excelOperation,scenarioID);
+	}
+	public void HeckylOIAnalysis(XSSFWorkbook workbook,String sheetName,String scenarioID, ExcelOperation excelOperation) throws Exception {
+		HeckylOIAnalysis heckylOIAnalysis = new HeckylOIAnalysis();
+		heckylOIAnalysis.viewHeckylOIAnalysis(workbook,sheetName,excelOperation,scenarioID);
+	}
+	public void HeckylGetRolloverData(XSSFWorkbook workbook,String sheetName,String scenarioID, ExcelOperation excelOperation) throws Exception {
+		HeckylGetRolloverData heckylGetRolloverData = new HeckylGetRolloverData();
+		heckylGetRolloverData.viewHeckylGetRolloverData(workbook,sheetName,excelOperation,scenarioID);
+	}
+	public void HeckylPCRRatio(XSSFWorkbook workbook,String sheetName,String scenarioID, ExcelOperation excelOperation) throws Exception {
+		HeckylPCRRatio heckylPCRRatio = new HeckylPCRRatio();
+		heckylPCRRatio.viewPCRatio(workbook,sheetName,excelOperation,scenarioID);
+	}
+	public void HeckylGetQuote(XSSFWorkbook workbook,String sheetName,String scenarioID, ExcelOperation excelOperation) throws Exception {
+		HeckylGetQuote heckylGetQuote = new HeckylGetQuote();
+		heckylGetQuote.viewHeckylGetQuote(workbook,sheetName,excelOperation,scenarioID);
+	}
+	public void HeckylGetGroupData(XSSFWorkbook workbook,String sheetName,String scenarioID, ExcelOperation excelOperation) throws Exception {
+		HeckylGetGroupData heckylGetGroupData = new HeckylGetGroupData();
+		heckylGetGroupData.viewHeckylGetGroupData(workbook,sheetName,excelOperation,scenarioID);
+	}
+}
